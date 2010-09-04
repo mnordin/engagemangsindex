@@ -1,9 +1,11 @@
 <?php
 function includeAllFunctions($cataloge) {
+	
+	chroot("./");
 	/*
 	 ikluderar alla php filer ifrån en mapp
 		*/
-	foreach (glob($cataloge . "/*.php") as $filename) {
+	foreach (glob("/functions/*.php") as $filename) {
 		include_once($filename);
 	}
 }
