@@ -1,6 +1,5 @@
 <?php
-	//require_once "includeAllFunctions.php";
-	require_once "functions/getNumberOfIntressenter.php";
+	require_once "includeAllFunctions.php";
 	$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz='.$_GET['s'].'&sort=d&utformat=xml';
 	$motioner = new SimpleXMLElement(file_get_contents($url));
 ?>
@@ -27,16 +26,20 @@
 						<tr>
 							<th>Motionstitel</th>
 							<th>Intressenter</th>
+							<th>Organ</th>
 						</tr>
 					</thead>
 					<tbody>
 					<?php foreach($motioner->dokument as $motionDokument): ?>
 						<tr>
-						<?php $motionstatus = new SimpleXMLElement(file_get_contents($motionDokument->dokumentstatus_url_xml)); ?>
-						<?php echo '<td><a href="'.$motionDokument->dokument_url_html.'">' . $motionDokument->titel . '</a></td>'; ?>
-						<?php echo '<td><a href="'. $motionDokument->dokumentstatus_url_xml .'">' . 
-						getNumberOfIntressenter($motionstatus)
-						. '</a></td>'; ?>
+							<?php $motionstatus = new SimpleXMLElement(file_get_contents($motionDokument->dokumentstatus_url_xml)); ?>
+							<?php echo '<td><a href="'.$motionDokument->dokument_url_html.'">' . $motionDokument->titel . '</a></td>'; ?>
+							<?php echo '<td><a href="'. $motionDokument->dokumentstatus_url_xml .'">' . 
+							getNumberOfIntressenter($motionstatus)
+							. '</a></td>'; ?>
+							<?php echo '<td><a href="'. $motionDokument->dokumentstatus_url_xml .'">' .
+							getOrgan($motionstatus)
+							. '</a></td>'; ?>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>

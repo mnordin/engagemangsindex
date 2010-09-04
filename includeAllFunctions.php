@@ -7,3 +7,5 @@ function includeAllFunctions($cataloge) {
 		include_once($filename);
 	}
 }
+
+includeAllFunctions("functions");
