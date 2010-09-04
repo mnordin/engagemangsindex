@@ -1,6 +1,5 @@
 <?php
-	//require_once "includeAllFunctions.php";
-	require_once "functions/getNumberOfIntressenter.php";
+	require_once "bootstrap.php";
 	$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz='.$_GET['s'].'&sort=d&utformat=xml';
 	$motioner = new SimpleXMLElement(file_get_contents($url));
 ?>
