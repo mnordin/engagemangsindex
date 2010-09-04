@@ -1,4 +1,6 @@
 <?php
+include_once "includeAllFunctions.php";
+
 $xml = file_get_contents("http://data.riksdagen.se/dokumentstatus/GX02Fi15");
 
 $x = new SimpleXMLElement($xml);
