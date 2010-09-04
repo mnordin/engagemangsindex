@@ -1,6 +1,12 @@
 <?php
 	require_once "bootstrap.php";
-	$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz='.$_GET['s'].'&sort=d&utformat=xml';
+	
+	if(isset($_GET['s']) && $_GET['s']) {
+		$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz='.$_GET['s'].'&sort=d&utformat=xml';
+	} else {
+		$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz=10&sort=d&utformat=xml';
+	}
+	
 	$motioner = new SimpleXMLElement(file_get_contents($url));
 ?>
 <!DOCTYPE html>
