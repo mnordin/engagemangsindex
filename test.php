@@ -1,5 +1,7 @@
 <?php
 include_once "includeAllFunctions.php";
+includeAllFunctions("functions");
+
 
 $xml = file_get_contents("http://data.riksdagen.se/dokumentstatus/GX02Fi15");
 
