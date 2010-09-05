@@ -169,7 +169,7 @@
 			</header>
 			
 
-			<div id="bar_chart_mot" class="hide"></div>
+			<div id="bar_chart_mot" class="show"></div>
 
 			<div id="pie_chart_mot" class="hide"></div>
 			
@@ -178,32 +178,6 @@
 			<div id="pie_chart_prop" class="hide"></div>
 		
 			
-			<!-- 
-				<table>
-					<thead>
-						<tr>
-							<th>Motionstitel</th>
-							<th>Intressenter</th>
-							<th>Organ</th>
-							<th>Datum</th>
-							<th>RM</th>
-							<th>Subtyp</th>
-						</tr>
-					</thead>
-					<tbody>
-					<?php while($motion = mysql_fetch_assoc($motioner)) : ?>
-						<tr>
-							<td><?= $motion['titel']; ?></td>
-							<td><?= $motion['antal_intressenter']; ?></td>
-							<td><?= $motion['organ']; ?></td>
-							<td><?= $motion['datum']; ?></td>
-							<td><?= $motion['rm']; ?></td>
-							<td><?= $motion['subtyp']; ?></td>
-						</tr>
-					<?php endwhile; ?>
-				</tbody>
-			</table>
-			 -->
 		</section>
 	</body>
 </html>
