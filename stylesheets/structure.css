@@ -30,12 +30,17 @@ li a {
 	padding: 5px 10px;
 }
 
-a:link, a:visited {
+header a:link, header a:visited {
 	color: #000;
 }
 
-a:hover, a:active {
+header a:hover, header a:active {
 	background: #fff;
+}
+
+#mostpopular {
+	margin-left: 50px;
+	margin-bottom: 20px;
 }
 
 h1 {

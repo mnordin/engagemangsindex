@@ -36,9 +36,7 @@
 		$js_string2 .= 'data.setValue('.$index.', 0, \''.$organ2['organ_namn'].'\');';
 		$js_string2 .= 'data.setValue('.$index.', 1, '.$organ2['antal_intressenter'].');';
 	}
-
 	
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +59,7 @@
 	        <?php echo $js_string;?>
 
 	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart_mot'));
-	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex motioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex motioner 2009-09-16 till 2010-07-14'});
 	        
 	      }
 	    </script>
@@ -77,7 +75,7 @@
 	        <?php echo $js_string2;?>
 	
 	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart_prop'));
-	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex propositioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex propositioner 2009-10-04 till 2010-06-18'});
 	        
 	      }
 			</script>
@@ -93,7 +91,7 @@
 	        <?php echo $js_string;?>
 
 	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_mot'));
-	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex motioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex motioner 2009-09-16 till 2010-07-14'});
 	        
 	      }
 	    </script>
@@ -109,7 +107,7 @@
 	        <?php echo $js_string2;?>
 	
 	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_prop'));
-	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex propositioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex propositioner 2009-10-04 till 2010-06-18'});
 	        
 	      }
 			</script>
@@ -178,6 +176,20 @@
 			<div id="pie_chart_prop" class="hide"></div>
 		
 			
+
+			 <?php 
+			 	if(isset($_GET['am'])){
+				 	$antalMotioner = $_GET['am'];
+			 	} else {
+				 	$antalMotioner = 10;
+			 	}
+			 ?>
+			<section id="mostpopular">
+			 <form action="" method="get">
+				<p>De <input type="text" size="3" name="am" <?php echo 'value="'.$antalMotioner.'"';?>></input> mest engagerande motionerna:</p>
+			 </form>
+			<?php echo getMotionerWithMostIntressenter($antalMotioner); ?>
+			</section>
 		</section>
 	</body>
 </html>
