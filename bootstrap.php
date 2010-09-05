@@ -6,6 +6,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 define('FUNCTIONS', ROOT . DS . 'functions');
 define('CLASSES', ROOT . DS . 'classes');
+define('JS', ROOT . DS . 'js');
 
 /**
  * ikluderar alla php filer ifrån en mapp
