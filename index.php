@@ -24,12 +24,12 @@
 	$intressenterPerOrgan2 = array();
 	$antal_intressenter2 = array();
 	$organ_namn2 = array();
-	
+	/*
 	while($organ2 = mysql_fetch_assoc($intressenterPerOrganData2)) {
 		$organ2['organ_namn'] = organizer($organ2['organ_namn']) . ' (' . $organ2['organ_namn'] . ')';
 		$intressenterPerOrgan2[] = $organ2;
 	}
-	
+	*/
 	$js_string2 = '';
 	
 	foreach($intressenterPerOrgan2 as $index => $organ2) {
@@ -143,6 +143,17 @@
 				</tbody>
 			</table>
 			 -->
+			 <?php 
+			 	if(isset($_GET['am'])){
+				 	$antalMotioner = $_GET['am'];
+			 	} else {
+				 	$antalMotioner = 10;
+			 	}
+			 ?>
+			 <form action="" method="get">
+				<p>De <input type="text" size="3" name="am" <?php echo 'value="'.$antalMotioner.'"';?>></input> mest engagerande motionerna:</p>
+			 </form>
+			<?php echo getMotionerWithMostIntressenter($antalMotioner); ?>
 		</section>
 	</body>
 </html>
