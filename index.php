@@ -1,8 +1,30 @@
 <?php
 	require_once "bootstrap.php";
 	
-	$motioner = mysql_query("SELECT * FROM motion");
+	$intressenterPerOrganData = mysql_query("SELECT sum(antal_intressenter) as antal_intressenter, organ as organ_namn FROM motion GROUP BY organ ORDER BY antal_intressenter DESC");
 	
+	$intressenterPerOrgan = array();
+	$antal_intressenter = array();
+	$organ_namn = array();
+	
+	while($organ = mysql_fetch_assoc($intressenterPerOrganData)) {
+		$organ['organ_namn'] = organizer($organ['organ_namn']) . ' (' . $organ['organ_namn'] . ')';
+		$intressenterPerOrgan[] = $organ;
+	}
+	
+	$js_string = '';
+	
+	foreach($intressenterPerOrgan as $index => $organ) {
+		$js_string .= 'data.setValue('.$index.', 0, \''.$organ['organ_namn'].'\');';
+		$js_string .= 'data.setValue('.$index.', 1, '.$organ['antal_intressenter'].');';
+	}
+	
+	echo '<pre>';
+	print_r($intressenterPerOrgan);
+	echo '</pre>';
+	
+	$pieChartUrl = 'http://chart.apis.google.com/chart?cht=p3&chd=t:'. $antal_intressenter .'&chs=900x330&chl=' . $organ_namn;
+	echo $pieChartUrl;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,19 +35,22 @@
 		<link rel="stylesheet" href="stylesheets/structure.css" media="all">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 		<script src="js/jgcharts.pack.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				var api = new jGCharts.Api(); 
-				jQuery('<img>') 
-				.attr('src', api.make({
-					data : [[<?=$_GET['1_1']?>], [<?=$_GET['2_1']?>], [<?=$_GET['3_1']?>]],
-					type : 'p',
-					size : '400x400',
-					legend : ['hej', 'nej', 'tjej']
-				})) 
-				.appendTo("#bar1");
-			});
-		</script>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	    <script type="text/javascript">
+	      google.load("visualization", "1", {packages:["corechart"]});
+	      google.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Organ');
+	        data.addColumn('number', 'Antal Intressenter');
+	        data.addRows(<?php echo count($intressenterPerOrgan); ?>);
+	        <?php echo $js_string;?>
+	
+	        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex'});
+	        
+	      }
+	    </script>
 	</head>
 	<body>
 		<section>
@@ -38,7 +63,9 @@
 				</nav>
 			</header>
 			
-			<div id="bar1"></div>
+			<?php echo $js_string;?>
+			
+			<div id="chart_div"></div>
 			
 			<form method="GET" action="">
 				<input name="1_1" type="text" value="<?=$_GET['1_1']?>"></input>
@@ -54,7 +81,7 @@
 			</form>
 			
 			<br />
-			
+			<!-- 
 				<table>
 					<thead>
 						<tr>
@@ -79,6 +106,7 @@
 					<?php endwhile; ?>
 				</tbody>
 			</table>
+			 -->
 		</section>
 	</body>
 </html>
