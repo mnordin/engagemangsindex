@@ -2,13 +2,12 @@
 	<head>
 		<script type="text/javascript" charset="utf-8">
 		
-			//OBS 446 är sista vi kom till innan vi avbröt
-			var i = 446;
+			var i = 1;
 			
 			function reloadIframe() {
 				document.getElementById('iframe').setAttribute("src","getDataToDb_iframe.php?i=" + i);
 				i++;
-				t=setTimeout("reloadIframe()", 2000);
+				t=setTimeout("reloadIframe()", 10000);
 			}
 			
 		</script>

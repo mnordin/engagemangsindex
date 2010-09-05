@@ -20,11 +20,9 @@
 	}
 	
 	echo '<pre>';
-	print_r($intressenterPerOrgan);
+	//print_r($intressenterPerOrgan);
 	echo '</pre>';
-	
-	$pieChartUrl = 'http://chart.apis.google.com/chart?cht=p3&chd=t:'. $antal_intressenter .'&chs=900x330&chl=' . $organ_namn;
-	echo $pieChartUrl;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +31,7 @@
 		<title>Engagemangsindex</title>
 		<meta name="description" content="">
 		<link rel="stylesheet" href="stylesheets/structure.css" media="all">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-		<script src="js/jgcharts.pack.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	    <script type="text/javascript">
 	      google.load("visualization", "1", {packages:["corechart"]});
@@ -46,11 +43,46 @@
 	        data.addRows(<?php echo count($intressenterPerOrgan); ?>);
 	        <?php echo $js_string;?>
 	
-	        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex'});
+	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+	        chart.draw(data, {width: 1200, height: 1000, title: 'Engagemangsindex'});
 	        
 	      }
+		</script>
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+    	google.setOnLoadCallback(drawChart);
+	    
+	
+	      function drawChart() {
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Organ');
+	        data.addColumn('number', 'Antal Intressenter');
+	        data.addRows(<?php echo count($intressenterPerOrgan); ?>);
+					
+	        <?php echo $js_string;?>
+	
+	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart'));
+	        chart.draw(data, {width: 1200, height: 1000, title: 'Engagemangsindex'});
+	        
+	      }
+	
+				function showBarChart() {
+					hideCharts();
+					$("#bar_chart").removeClass("hide").addClass("show");
+				}
+				
+				function showPieChart() {
+					hideCharts();
+					$("#pie_chart").removeClass("hide").addClass("show");
+				}
+				
+				function hideCharts() {
+					$("#pie_chart").removeClass("show").addClass("hide");
+					$("#bar_chart").removeClass("show").addClass("hide");
+				}
+				
 	    </script>
+	
 	</head>
 	<body>
 		<section>
@@ -58,29 +90,18 @@
 				<h1>Engagemangsindex</h1>
 				<nav>
 					<ul>
-						<li><a href=""></a></li>
+						<li><a href="#" onclick="showBarChart();">Visa stapeldiagram</a></li>
+						<li><a href="#" onclick="showPieChart();">Visa pajdiagram</a></li>
 					</ul>
 				</nav>
 			</header>
 			
-			<?php echo $js_string;?>
+			<?php //echo $js_string;?>
 			
-			<div id="chart_div"></div>
+			<div id="pie_chart" class="hide"></div>
 			
-			<form method="GET" action="">
-				<input name="1_1" type="text" value="<?=$_GET['1_1']?>"></input>
-				<input name="1_2" type="text" value="<?=$_GET['1_2']?>"></input>
-				<input name="1_3" type="text" value="<?=$_GET['1_3']?>"></input>
-				<input name="2_1" type="text" value="<?=$_GET['2_1']?>"></input>
-				<input name="2_2" type="text" value="<?=$_GET['2_2']?>"></input>
-				<input name="2_3" type="text" value="<?=$_GET['2_3']?>"></input>
-				<input name="3_1" type="text" value="<?=$_GET['3_1']?>"></input>
-				<input name="3_2" type="text" value="<?=$_GET['3_2']?>"></input>
-				<input name="3_3" type="text" value="<?=$_GET['3_3']?>"></input>
-				<input type="submit"></input>
-			</form>
+			<div id="bar_chart"></div>
 			
-			<br />
 			<!-- 
 				<table>
 					<thead>

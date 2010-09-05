@@ -6,6 +6,25 @@
 		
 		$oversatt = array(
 			'SfU' 	=> 'Svenska föreningen för Upphovsrätt',
+			'CU' 	=> 'Civil',
+			'FiU' 	=> 'Finans',
+			'AU' 	=> 'Arbetsmarknad',
+			'NU' 	=> 'Näring',
+			'SoU' 	=> 'Social',
+			'UU' 	=> 'Utrikes',
+			'UbU' 	=> 'Utbildning',
+			'SfU' 	=> 'Socialförsäkring',
+			'MJU' 	=> 'Miljö- och Jordbruk',
+			'SkU' 	=> 'Skatte',
+			'JuU' 	=> 'Justitie',
+			'TU' 	=> 'Trafik',
+			'KU' 	=> 'Konstitution',
+			'KrU' 	=> 'Kultur',
+			'FöU' 	=> 'Försvar',
+		);
+		
+		/*$oversatt = array(
+			'SfU' 	=> 'Svenska föreningen för Upphovsrätt',
 			'CU' 	=> 'Civilutskottet',
 			'FiU' 	=> 'Finansutskottet',
 			'AU' 	=> 'Arbetsmarknadsutskottet',
@@ -21,7 +40,7 @@
 			'KU' 	=> 'Konstitutionsutskottet',
 			'KrU' 	=> 'Kulturutskottet',
 			'FöU' 	=> 'Försvarsutskottet',
-		);
+		);*/
 		
 		foreach($oversatt as $acro => $full) {
 			if(strtolower($string) == strtolower($acro)) {

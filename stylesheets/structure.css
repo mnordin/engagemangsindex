@@ -14,3 +14,15 @@ del { text-decoration: line-through; }
 /* tables still need 'cellspacing="0"' in the markup */
 table { border-collapse: collapse; border-spacing: 0; }
 article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+#bar_chart, #pie_chart {
+	overflow: hidden;
+}
+
+.show {
+	height: 1000px;
+}
+
+.hide {
+	height: 1px;
+}
