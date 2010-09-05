@@ -61,7 +61,7 @@
 	        <?php echo $js_string;?>
 
 	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart_mot'));
-	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex motioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex motioner'});
 	        
 	      }
 	    </script>
@@ -77,7 +77,7 @@
 	        <?php echo $js_string2;?>
 	
 	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart_prop'));
-	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex propositioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex propositioner'});
 	        
 	      }
 			</script>
@@ -93,7 +93,7 @@
 	        <?php echo $js_string;?>
 
 	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_mot'));
-	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex motioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex motioner'});
 	        
 	      }
 	    </script>
@@ -109,7 +109,7 @@
 	        <?php echo $js_string2;?>
 	
 	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_prop'));
-	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex propositioner'});
+	        chart.draw(data, {width: 900, height: 750, title: 'Engagemangsindex propositioner'});
 	        
 	      }
 			</script>
@@ -146,6 +146,7 @@
 				$(document).onload(function(){
 					$("a:first").click();
 				})
+				
 	    </script>
 	
 	</head>
@@ -155,11 +156,11 @@
 				<h1>Engagemangsindex</h1>
 				<nav>
 					<ul>
-						<li>Motioner<ul>
+						<li class="sub">Motioner<ul>
 							<li><a href="#" onclick="showBarChartMot();">Visa stapeldiagram</a></li>
 							<li><a href="#" onclick="showPieChartMot();">Visa pajdiagram</a></li>
 						</ul>
-						<li>Propositioner<ul>
+						<li class="sub">Propositioner<ul>
 							<li><a href="#" onclick="showBarChartProp();">Visa stapeldiagram</a></li>
 							<li><a href="#" onclick="showPieChartProp();">Visa pajdiagram</a></li>
 						</ul>
