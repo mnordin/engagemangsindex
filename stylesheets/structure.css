@@ -15,14 +15,12 @@ del { text-decoration: line-through; }
 table { border-collapse: collapse; border-spacing: 0; }
 article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
 
-#bar_chart, #pie_chart {
-	overflow: hidden;
-}
 
 .show {
 	height: 1000px;
 }
 
 .hide {
+	overflow: hidden;
 	height: 1px;
 }

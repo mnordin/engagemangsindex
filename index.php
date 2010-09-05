@@ -50,6 +50,7 @@
 		<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	    <script type="text/javascript">
+				// PAJDIAGRAM MOTIONER
 	      google.load("visualization", "1", {packages:["corechart"]});
 	      google.setOnLoadCallback(drawChart);
 	      function drawChart() {
@@ -59,12 +60,13 @@
 	        data.addRows(<?php echo count($intressenterPerOrgan); ?>);
 	        <?php echo $js_string;?>
 
-	        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart_mot'));
 	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex motioner'});
 	        
 	      }
 	    </script>
 	    <script type="text/javascript">
+				// PAJDIAGRAM PROPOSITIONER
 	      google.load("visualization", "1", {packages:["corechart"]});
 	      google.setOnLoadCallback(drawChart);
 	      function drawChart() {
@@ -74,26 +76,76 @@
 	        data.addRows(<?php echo count($intressenterPerOrgan2); ?>);
 	        <?php echo $js_string2;?>
 	
-	        var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+	        var chart = new google.visualization.PieChart(document.getElementById('pie_chart_prop'));
 	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex propositioner'});
 	        
 	      }
+			</script>
+			<script type="text/javascript">
+				// STAPELDIAGRAM MOTIONER
+	      google.load("visualization", "1", {packages:["corechart"]});
+	      google.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Organ');
+	        data.addColumn('number', 'Antal Intressenter');
+	        data.addRows(<?php echo count($intressenterPerOrgan); ?>);
+	        <?php echo $js_string;?>
+
+	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_mot'));
+	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex motioner'});
+	        
+	      }
+	    </script>
+	    <script type="text/javascript">
+				// STAPELDIAGRAM PROPOSITIONER
+	      google.load("visualization", "1", {packages:["corechart"]});
+	      google.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Organ');
+	        data.addColumn('number', 'Antal Intressenter');
+	        data.addRows(<?php echo count($intressenterPerOrgan2); ?>);
+	        <?php echo $js_string2;?>
 	
-				function showBarChart() {
+	        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_prop'));
+	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex propositioner'});
+	        
+	      }
+			</script>
+			
+	    <script type="text/javascript">
+
+				function showBarChartMot() {
 					hideCharts();
-					$("#bar_chart").removeClass("hide").addClass("show");
+					$("#bar_chart_mot").removeClass("hide").addClass("show");
 				}
 				
-				function showPieChart() {
+				function showPieChartMot() {
 					hideCharts();
-					$("#pie_chart").removeClass("hide").addClass("show");
+					$("#pie_chart_mot").removeClass("hide").addClass("show");
+				}
+				
+				function showBarChartProp() {
+					hideCharts();
+					$("#bar_chart_prop").removeClass("hide").addClass("show");
+				}
+				
+				function showPieChartProp() {
+					hideCharts();
+					$("#pie_chart_prop").removeClass("hide").addClass("show");
 				}
 				
 				function hideCharts() {
-					$("#pie_chart").removeClass("show").addClass("hide");
-					$("#bar_chart").removeClass("show").addClass("hide");
+					$("#bar_chart_mot").removeClass("show").addClass("hide");
+					$("#pie_chart_mot").removeClass("show").addClass("hide");
+					$("#bar_chart_prop").removeClass("show").addClass("hide");
+					$("#pie_chart_prop").removeClass("show").addClass("hide");
 				}
 				
+				$(document).onload(function(){
+					$("a:first").click();
+				})
 	    </script>
 	
 	</head>
@@ -103,19 +155,27 @@
 				<h1>Engagemangsindex</h1>
 				<nav>
 					<ul>
-						<li><a href="#" onclick="showBarChart();">Visa stapeldiagram</a></li>
-						<li><a href="#" onclick="showPieChart();">Visa pajdiagram</a></li>
+						<li>Motioner<ul>
+							<li><a href="#" onclick="showBarChartMot();">Visa stapeldiagram</a></li>
+							<li><a href="#" onclick="showPieChartMot();">Visa pajdiagram</a></li>
+						</ul>
+						<li>Propositioner<ul>
+							<li><a href="#" onclick="showBarChartProp();">Visa stapeldiagram</a></li>
+							<li><a href="#" onclick="showPieChartProp();">Visa pajdiagram</a></li>
+						</ul>
 					</ul>
 				</nav>
 			</header>
 			
 
-			<div id="pie_chart" class="hide"></div>
+			<div id="bar_chart_mot" class="hide"></div>
 
-			<div id="chart_div"></div>
-			<div id="chart_div2"></div>
+			<div id="pie_chart_mot" class="hide"></div>
 			
-			<div id="bar_chart"></div>
+			<div id="bar_chart_prop" class="hide"></div>
+			
+			<div id="pie_chart_prop" class="hide"></div>
+		
 			
 			<!-- 
 				<table>
