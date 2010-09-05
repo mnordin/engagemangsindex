@@ -1,13 +1,8 @@
 <?php
 	require_once "bootstrap.php";
 	
-	if(isset($_GET['s']) && $_GET['s']) {
-		$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz='.$_GET['s'].'&sort=d&utformat=xml';
-	} else {
-		$url = 'http://data.riksdagen.se/dokumentlista/?rm=&typ=mot&sz=10&sort=d&utformat=xml';
-	}
+	$motioner = mysql_query("SELECT * FROM motion");
 	
-	$motioner = new SimpleXMLElement(file_get_contents($url));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,21 +61,22 @@
 							<th>Motionstitel</th>
 							<th>Intressenter</th>
 							<th>Organ</th>
+							<th>Datum</th>
+							<th>RM</th>
+							<th>Subtyp</th>
 						</tr>
 					</thead>
 					<tbody>
-					<?php foreach($motioner->dokument as $motionDokument): ?>
+					<?php while($motion = mysql_fetch_assoc($motioner)) : ?>
 						<tr>
-							<?php $motionstatus = new SimpleXMLElement(file_get_contents($motionDokument->dokumentstatus_url_xml)); ?>
-							<?php echo '<td><a href="'.$motionDokument->dokument_url_html.'">' . $motionDokument->titel . '</a></td>'; ?>
-							<?php echo '<td><a href="'. $motionDokument->dokumentstatus_url_xml .'">' . 
-							getNumberOfIntressenter($motionstatus)
-							. '</a></td>'; ?>
-							<?php echo '<td><a href="'. $motionDokument->dokumentstatus_url_xml .'">' .
-							getOrgan($motionstatus)
-							. '</a></td>'; ?>
+							<td><?= $motion['titel']; ?></td>
+							<td><?= $motion['antal_intressenter']; ?></td>
+							<td><?= $motion['organ']; ?></td>
+							<td><?= $motion['datum']; ?></td>
+							<td><?= $motion['rm']; ?></td>
+							<td><?= $motion['subtyp']; ?></td>
 						</tr>
-					<?php endforeach; ?>
+					<?php endwhile; ?>
 				</tbody>
 			</table>
 		</section>
