@@ -15,8 +15,56 @@ del { text-decoration: line-through; }
 table { border-collapse: collapse; border-spacing: 0; }
 article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
 
-#bar_chart, #pie_chart {
-	overflow: hidden;
+body {
+	font-family: arial, helvetica;
+}
+
+header {
+	background: #ddd;
+	padding: 30px 50px;
+	height: 80px;
+}
+
+li a {
+	display: block;
+	padding: 5px 10px;
+}
+
+a:link, a:visited {
+	color: #000;
+}
+
+a:hover, a:active {
+	background: #fff;
+}
+
+h1 {
+	font-size: 42px;
+	margin-bottom: 20px;
+}
+
+ul {
+	clear: left;
+}
+
+.sub {
+	margin-right: 50px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.sub ul {
+	margin-top: 5px;
+}
+
+.sub li {
+	font-size: 14px;
+	margin-right: 20px;
+}
+
+
+li {
+	float: left;
 }
 
 .show {
@@ -24,5 +72,6 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
 }
 
 .hide {
+	overflow: hidden;
 	height: 1px;
 }
