@@ -1,0 +1,30 @@
+1. Prop 2009/10:164   // webbnav/?nid=37&dok_id=GX03164  	
+	|					
+2.	|-> Behandling av propp //webbnav/?nid=3120&doktyp=proposition&bet=2009/10:164  		//
+3.		1 MJU26 -> Betänkande  //webbnav/?nid=3120&doktyp=betankande&bet=2009%2f10%3aMJU26
+		2 MJU26 -> Betänkande	//webbnav/?nid=3120&doktyp=betankande&bet=2009%2f10%3aMJU26 
+		3 MJU26 -> Betänkande 	//webbnav/?nid=3120&doktyp=betankande&bet=2009%2f10%3aMJU26
+		|
+4.		|->	Debatt protokoll 2009/10:126 -> webbnav/index.aspx?nid=101&bet=2009/10:126
+			Beslut protokoll 2009/10:126 -> webbnav/index.aspx?nid=101&bet=2009/10:126
+		
+1.	//dokumentlista/?rm=2009%2F10&typ=prop&d=&ts=&parti=&iid=&bet=164&org=&kat=&sz=10&sort=c&utformat=xml&termlista=   
+		|
+2.		|-><dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GX03164	
+			|
+3.			|-><dokumentstatus>	
+				<dokforslag>
+					<forslag>
+						<nummer>1
+						<behandlas_i>2009/10:MJU26
+			<dokumentstatus>	
+				<dokforslag>
+					<forslag>
+						<nummer>2
+							<behandlas_i>2009/10:MJU26
+
+3.5		MJU26 	//dokumentlista/?rm=2009%2F10&typ=bet&d=&ts=&parti=&iid=&bet=MJU26&org=&kat=&sz=10&sort=c&utformat=xml&termlista=
+				//<dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GX01MJU26
+				//<utskottsforslag_url_xml>http://data.riksdagen.se/utskottsforslag/GX01MJU26
+
+4. 		

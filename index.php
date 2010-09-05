@@ -18,13 +18,26 @@
 		$js_string .= 'data.setValue('.$index.', 0, \''.$organ['organ_namn'].'\');';
 		$js_string .= 'data.setValue('.$index.', 1, '.$organ['antal_intressenter'].');';
 	}
+#####Props
+	$intressenterPerOrganData2 = mysql_query("SELECT count(organ) as antal_intressenter, organ as organ_namn FROM proposition GROUP BY organ");
 	
-	echo '<pre>';
-	print_r($intressenterPerOrgan);
-	echo '</pre>';
+	$intressenterPerOrgan2 = array();
+	$antal_intressenter2 = array();
+	$organ_namn2 = array();
 	
-	$pieChartUrl = 'http://chart.apis.google.com/chart?cht=p3&chd=t:'. $antal_intressenter .'&chs=900x330&chl=' . $organ_namn;
-	echo $pieChartUrl;
+	while($organ2 = mysql_fetch_assoc($intressenterPerOrganData2)) {
+		$organ2['organ_namn'] = organizer($organ2['organ_namn']) . ' (' . $organ2['organ_namn'] . ')';
+		$intressenterPerOrgan2[] = $organ2;
+	}
+	
+	$js_string2 = '';
+	
+	foreach($intressenterPerOrgan2 as $index => $organ2) {
+		$js_string2 .= 'data.setValue('.$index.', 0, \''.$organ2['organ_namn'].'\');';
+		$js_string2 .= 'data.setValue('.$index.', 1, '.$organ2['antal_intressenter'].');';
+	}
+
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +60,22 @@
 	        <?php echo $js_string;?>
 	
 	        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex'});
+	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex motioner'});
+	        
+	      }
+	    </script>
+	    <script type="text/javascript">
+	      google.load("visualization", "1", {packages:["corechart"]});
+	      google.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Organ');
+	        data.addColumn('number', 'Antal Intressenter');
+	        data.addRows(<?php echo count($intressenterPerOrgan2); ?>);
+	        <?php echo $js_string2;?>
+	
+	        var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+	        chart.draw(data, {width: 1450, height: 1300, title: 'Engagemangsindex propositioner'});
 	        
 	      }
 	    </script>
@@ -66,6 +94,7 @@
 			<?php echo $js_string;?>
 			
 			<div id="chart_div"></div>
+			<div id="chart_div2"></div>
 			
 			<form method="GET" action="">
 				<input name="1_1" type="text" value="<?=$_GET['1_1']?>"></input>
